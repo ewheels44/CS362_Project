@@ -67,7 +67,7 @@ while True:
                     key_filename=os.path.join(os.path.expanduser('~'), ".ssh", "CS362_projectt_keypair.pem"))
 
 # Run command.
-        ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("show ip route")
+        ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("ls")
         output = ssh_stdout.readlines()
 
         print(output)
