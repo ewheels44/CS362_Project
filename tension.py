@@ -53,15 +53,12 @@ while True:
       print("press e to stop monitoring")
 
       while True:
-            cmd_2 = input()
-
-            if (cmd_2 == "e"):
-                break
-            else:
-              line = usb.readline()  # read
-              line = line.decode()  # convert 
-              line = line.strip()  # strip extra whitespace characters
-              print(line)
+          line = usb.readline()  # read
+          line = line.decode()  # convert 
+          line = line.strip()  # strip extra whitespace characters
+          print(line)
+          line = line.strip()  # strip extra whitespace characters
+          print(line)
 
 
    elif command == "x":  # exit program
