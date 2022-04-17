@@ -22,8 +22,13 @@ import serial
 # Functions
 def print_commands():
    """Prints available commands."""
+   print("Sailing Preformance Limited")
+   print("Welcome")
+   print("Starting up....")
+   print()
    print("Available commands:")
-   print("  a - Retrieve Arduino value")
+   # print("  a - Retrieve Arduino value")
+   print("  s - start monitoring tension")
    print("  x - Exit program")
 
 
@@ -44,16 +49,15 @@ print_commands()
 while True:
    command = input("Enter command: ")
    if command == "a":  # read Ardino A0 pin value
-      usb.write(b'read_a0')  # send command to Arduino
-      line = usb.readline()  # read input from Arduino
-      line = line.decode()  # convert type from bytes to string
+    print("fail safe")
+   elif command == "s":
+      usb.write(b' read_tension')
+      line = usb.readline()  # read
+      line = line.decode()  # convert 
       line = line.strip()  # strip extra whitespace characters
-      if line.isdigit():  # check if line contains only digits
-         value = int(line)  # convert type from string to int
-      else:
-         print("Unknown value '" + line + "', setting to 0.")
-         value = 0
-      print("Arduino A0 value:", value)
+
+      print(line)
+
    elif command == "x":  # exit program
       print("Exiting program.")
       exit()
