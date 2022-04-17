@@ -3,7 +3,7 @@
 USB_PORT = "/dev/ttyACM0"  # Arduino Uno WiFi Rev2
 
 import serial
-
+import paramiko 
 
 #
 # print_commands
@@ -49,16 +49,33 @@ while True:
    if command == "a":       # fail safe test
     print("fail safe")
    elif command == "s":
-      usb.write(b'read_tension')
-      print("press e to stop monitoring")
+        usb.write(b'read_tension')
+        print("press e to stop monitoring")
 
-      while True:
-          line = usb.readline()  # read
-          line = line.decode()  # convert 
-          line = line.strip()  # strip extra whitespace characters
-          print(line)
-          line = line.strip()  # strip extra whitespace characters
-          print(line)
+        router_ip = "ec2-34-230-73-208.compute-1.amazonaws.com"
+        router_username = "ubuntu"
+
+        ssh = paramiko.SSHClient()
+
+# Load SSH host keys.
+        ssh.load_system_host_keys()
+# Add SSH host key automatically if needed.
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+# Connect to router using username/password authentication.
+        ssh.connect(router_ip, 
+                    username=router_username, 
+                    key_filename = "CS362_projectt_keypair.pem")
+
+# Run command.
+        ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("show ip route")
+        output = ssh_stdout.readlines()
+
+      # while True:
+      #     line = usb.readline()  # read
+      #     line = line.decode()  # convert 
+      #     line = line.strip()  # strip extra whitespace characters
+      #     print(line)
+
 
 
    elif command == "x":  # exit program
