@@ -50,7 +50,8 @@ while True:
     print("fail safe")
    elif command == "s":
       while (command == "s"):
-          usb.write(b' read_tension')
+          command = input()
+          usb.write(b'read_tension')
           line = usb.readline()  # read
           line = line.decode()  # convert 
           line = line.strip()  # strip extra whitespace characters
