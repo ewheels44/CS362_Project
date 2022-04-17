@@ -64,7 +64,7 @@ while True:
 # Connect to router using username/password authentication.
         ssh.connect(router_ip, 
                     username=router_username, 
-                    key_filename = "CS362_projectt_keypair.pem")
+                    key_filename = "/home/pi/Documents/RPIandAR/CS362_Project/CS362_projectt_keypair.pem")
 
 # Run command.
         ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("show ip route")
