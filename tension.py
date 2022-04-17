@@ -49,18 +49,21 @@ while True:
    if command == "a":       # fail safe test
     print("fail safe")
    elif command == "s":
-      while (command == "s"):
-          command = input()
+      print("press e to stop monitoring")
+      while True:
+          stop = input()
           usb.write(b'read_tension')
           line = usb.readline()  # read
           line = line.decode()  # convert 
           line = line.strip()  # strip extra whitespace characters
 
           print(line)
+          if (stop == "e"):
+            break
 
    elif command == "x":  # exit program
       print("Exiting program.")
       exit()
    else:  # unknown command
       print("Unknown command '" + command + "'.")
-      print_commands()
+      help()
