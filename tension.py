@@ -54,7 +54,7 @@ while True:
         usb.write(b'read_tension')
         print("press e to stop monitoring")
 
-        client = influxDBClient(host='ec2-34-230-73-208.compute-1.amazonaws.com', port=8086, database='tesing')
+        client = InfluxDBClient(host='ec2-34-230-73-208.compute-1.amazonaws.com', port=8086, database='tesing')
         measurement_name = "speedtest"
         time = datetime.datetime.utcnow()
 
