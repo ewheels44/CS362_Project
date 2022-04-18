@@ -67,7 +67,8 @@ while True:
             "measurement": measurement_name,
             "time": time,
             "fields": {
-                "value" : 0.6
+                "forestay" : 0.6,
+                "backstay" : 0.6
             }
         }
     ]
