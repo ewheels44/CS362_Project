@@ -2,12 +2,12 @@
 
 USB_PORT = "/dev/ttyACM0"  # Arduino Uno WiFi Rev2
 
-
-import os.path
 import serial
-import paramiko 
+from influxdb import InfluxDBClient
+import time 
+import datetime 
 
-#
+
 # print_commands
 #
 # prints available comands to user
@@ -54,23 +54,26 @@ while True:
         usb.write(b'read_tension')
         print("press e to stop monitoring")
 
-        router_ip = "ec2-34-230-73-208.compute-1.amazonaws.com"
-        router_username = "ubuntu"
+        client = influxdbclient(host='ec2-34-230-73-208.compute-1.amazonaws.com', port=8086, database='tesing')
+        measurement_name = "speedtest"
+        time = datetime.datetime.utcnow()
 
-        ssh = paramiko.SSHClient()
+            # connect to influx
+        ifclient = influxdbclient(ifhost,ifport,ifdb)
 
-# Add SSH host key automatically if needed.
-        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-# Connect to router using username/password authentication.
-        ssh.connect(router_ip, 
-                    username=router_username, 
-                    key_filename=os.path.join(os.path.expanduser('~'), ".ssh", "CS362_projectt_keypair.pem"))
+        body = [
+        {
+            "measurement": measurement_name,
+            "time": time,
+            "fields": {
+                "value" : 0.6
+            }
+        }
+    ]
 
-# Run command.
-        ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("ls")
-        output = ssh_stdout.readlines()
+        # write the measurement
+        # ifclient.write_points(body)
 
-        print(output)
 
       # while True:
       #     line = usb.readline()  # read
