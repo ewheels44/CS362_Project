@@ -59,7 +59,7 @@ while True:
         time = datetime.datetime.utcnow()
 
             # connect to influx
-        ifclient = influxdbclient(ifhost,ifport,ifdb)
+        ifclient = InfluxDBClient(ifhost,ifport,ifdb)
 
         body = [
         {
@@ -72,7 +72,7 @@ while True:
     ]
 
         # write the measurement
-        # ifclient.write_points(body)
+        ifclient.write_points(body)
 
 
       # while True:
