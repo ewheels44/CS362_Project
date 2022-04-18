@@ -55,11 +55,12 @@ while True:
         print("press e to stop monitoring")
 
         client = InfluxDBClient(host='ec2-34-230-73-208.compute-1.amazonaws.com', port=8086, database='tesing')
-        measurement_name = "speedtest"
+
+        measurement_name = "tension"
         time = datetime.datetime.utcnow()
 
             # connect to influx
-        ifclient = InfluxDBClient(ifhost,ifport,ifdb)
+        # ifclient = InfluxDBClient(ifhost,ifport,ifdb)
 
         body = [
         {
@@ -72,7 +73,7 @@ while True:
     ]
 
         # write the measurement
-        ifclient.write_points(body)
+        client.write_points(body)
 
 
       # while True:
