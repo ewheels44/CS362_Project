@@ -54,27 +54,9 @@ while True:
         usb.write(b'read_tension')
         print("press e to stop monitoring")
 
-    #     client = InfluxDBClient(host='ec2-34-230-73-208.compute-1.amazonaws.com', port=8086, database='tesing')
+        client = InfluxDBClient(host='ec2-34-230-73-208.compute-1.amazonaws.com', port=8086, database='tesing')
 
-    #     measurement_name = "tension"
-    #     time = datetime.datetime.utcnow()
-
-    #         # connect to influx
-    #     # ifclient = InfluxDBClient(ifhost,ifport,ifdb)
-
-    #     body = [
-    #     {
-    #         "measurement": measurement_name,
-    #         "time": time,
-    #         "fields": {
-    #             "forestay" : 0.6,
-    #             "backstay" : 0.6
-    #         }
-    #     }
-    # ]
-
-    #     # write the measurement
-    #     client.write_points(body)
+        measurement_name = "tension"
 
 
         while True:
@@ -83,9 +65,24 @@ while True:
           line = line.strip()  # strip extra whitespace characters
           print(line)
           if len(line) >= 7:
-              forestay, backstay = line.split(",")
-              print(forestay)
-              print(backstay)
+            forestay_data, backstay_data = line.split(",")
+            print(forestay)
+            print(backstay)
+            time = datetime.datetime.utcnow()
+
+            body = [
+            {
+                "measurement": measurement_name,
+                "time": time,
+                "fields": {
+                    "forestay" : forestay_data,
+                    "backstay" : backstay_data
+                }
+            }
+            ]
+
+            # write the measurement
+            client.write_points(body)
 
 
 
