@@ -66,8 +66,8 @@ while True:
           print(line)
           if len(line) >= 7:
             forestay_data, backstay_data = line.split(",")
-            print(forestay)
-            print(backstay)
+            print(forestay_data)
+            print(backstay_data)
             time = datetime.datetime.utcnow()
 
             body = [
