@@ -82,9 +82,10 @@ while True:
           line = line.decode()  # convert
           line = line.strip()  # strip extra whitespace characters
           print(line)
-          forestay, backstay = line.split(",")
-          print(forestay)
-          print(backstay)
+          if len(line) >= 7:
+              forestay, backstay = line.split(",")
+              print(forestay)
+              print(backstay)
 
 
 
