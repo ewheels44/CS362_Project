@@ -69,6 +69,9 @@ while True:
             print(forestay_data)
             print(backstay_data)
             time = datetime.datetime.utcnow()
+            float_index = s.find(n)
+            if float_index > 0:
+                forestay_data = forestay_data[float_index:]
 
             body = [
             {
