@@ -75,8 +75,8 @@ while True:
                 "measurement": measurement_name,
                 "time": time,
                 "fields": {
-                    "forestay" : forestay_data,
-                    "backstay" : backstay_data
+                    "forestay" : float(forestay_data),
+                    "backstay" : float(backstay_data)
                 }
             }
             ]
